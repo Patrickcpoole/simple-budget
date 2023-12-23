@@ -33,7 +33,7 @@ function NavDrawer() {
                         onClick={() => handleToggleDrawer(true)}
                         className="text-white hover:text-primary focus:outline-none focus:text-primary"
                     >
-                        <AiOutlineMenu size={35}/>
+                        <AiOutlineMenu size={35} />
                     </button>
                 </div>
             </div>
