@@ -10,7 +10,7 @@ type NavState = {
 
 const initialState = {
     value: {
-        toggled: true,
+        toggled: false,
     } as NavState,
 } as InitialStateType;
 export const nav = createSlice({

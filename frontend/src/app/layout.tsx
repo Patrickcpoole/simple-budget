@@ -10,6 +10,9 @@ import {
     AiOutlineYoutube,
     AiOutlineMenu
 } from "react-icons/ai";
+import Logo from "../../public/wealthfront-logo.png";
+import Image from "next/image";
+import React from "react";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -32,8 +35,8 @@ export default function RootLayout({
             <NavDrawer/>
             <div className="flex justify-center items-center h-screen">
 
-                <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
-
+                <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+                    <Image src={Logo} alt="Wealthfront Logo" width={500} height={300} />
                     {children}
 
                 </div>
