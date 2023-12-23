@@ -10,11 +10,12 @@ const config: Config = {
     extend: {
         colors: {
             'primary': '#4840bb',
+            'customGradient': 'linear-gradient(180deg, rgba(72,64,187,1) 0%, rgba(186,92,48,1) 100%)',
         },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+
+
+     backgroundImage: {
+        'custom-gradient': 'linear-gradient(180deg, rgba(72,64,187,1) 0%, rgba(186,92,48,1) 100%)',
       },
     },
   },

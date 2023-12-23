@@ -4,5 +4,16 @@
 
 body {
   background: rgb(195,205,244);
-  background: linear-gradient(90deg, rgba(195,205,244,1) 0%, rgba(254,208,186,1) 100%);
+  background: linear-gradient(180deg, rgba(195,205,244,1) 0%, rgba(254,208,186,1) 100%);
+}
+
+.custom-border:hover {
+  border-image: -webkit-linear-gradient(180deg, rgba(195,205,244,1) 0%, rgba(254,208,186,1) 100%);
+    -webkit-background-clip: text;
+}
+
+.hover-gradient-text:hover {
+  background: -webkit-linear-gradient(180deg, rgba(195,205,244,1) 0%, rgba(254,208,186,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
