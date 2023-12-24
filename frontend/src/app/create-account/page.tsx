@@ -80,7 +80,7 @@ export default function CreateAccount() {
                         <input
                             {...register(name)}
                             type={type}
-                            className="border border-gray-300 p-2 w-[98%] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="border border-gray-300 p-2 w-[98%] rounded focus:outline-none focus:ring-2 focus:ring-primary"
                             placeholder={placeholder}
                         />
                         {errors[name] && (

@@ -15,6 +15,7 @@ import type {AppDispatch} from '@/redux/store';
 export default function Dashboard() {
     // Use useSelector to get the user state from the Redux store
     const userData = useAppSelector((state) => state.userReducer.value);
+    const isAuth = useAppSelector((state) => state.authReducer.isAuth);
 
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
@@ -53,7 +54,7 @@ export default function Dashboard() {
     return (
         <>
             <div className="container mx-auto p-4">
-                {userData && (
+                {userData && isAuth && (
                     <div className="max-w-2xl mx-auto shadow-md overflow-hidden">
                         <table className="min-w-full leading-normal">
                             <thead>
