@@ -1,6 +1,7 @@
 // In your thunk file
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setUser as setUserFromUserSlice } from "../user/user-slice";
+import { loginUser } from "./auth-slice";
 
 type LoginFormInputs = {
     email: string;
@@ -20,6 +21,7 @@ export const loginUserThunk = createAsyncThunk(
       const data = await response.json();
 
       if (response.ok && data.success) {
+          dispatch(loginUser())
         dispatch(setUserFromUserSlice(data.user)); // Dispatching action
         return data; // Resolve the promise with data
       } else {

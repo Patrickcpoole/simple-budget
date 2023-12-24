@@ -1,10 +1,11 @@
 "use client";
 
-import React from 'react';
+import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 import Link from 'next/link';
+import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai';
 import {useRouter} from "next/navigation";
 import {useDispatch} from 'react-redux';
 import type {AppDispatch} from '@/redux/store';
@@ -37,6 +38,9 @@ export default function Login() {
     const {register, handleSubmit, formState: {errors}} = useForm<LoginFormInputs>({
         resolver: yupResolver(loginValidationSchema),
     });
+
+    const [showPassword, setShowPassword] = useState(false);
+
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
 
@@ -59,30 +63,50 @@ export default function Login() {
             });
     };
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     return (
 
         <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-4 w-auto items-center"
         >
+            <div className="relative w-[98%] flex flex-col">
+                <input
+                    {...register('email')}
+                    type="email"
+                    className="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Email"
+                />
+                {errors.email && (
+                    <span className="text-red-500 text-sm mt-1">
+                        {errors.email?.message}
+                    </span>
+                )}
+            </div>
 
-
-            {inputInfoArray.map(({ name, placeholder, type }, index) => (
-                <div key={name} className="relative w-[98%] flex flex-col">
-                    <input
-                        {...register(name)}
-                        type={type}
-                        autoComplete={name === 'password' ? 'current-password' : 'on'}
-                        className="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder={placeholder}
-                    />
-                    {errors[name] && (
-                        <span className="text-red-500 text-sm mt-1">
-                            {errors[name]?.message}
-                        </span>
-                    )}
-                </div>
-            ))}
+            <div className="relative w-[98%] flex flex-col">
+                <input
+                    {...register('password')}
+                    type={showPassword ? "text" : "password"}
+                    className="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Password"
+                />
+                <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                >
+                    {showPassword ? <AiOutlineEyeInvisible size={20} color={"#4840bb"}/> : <AiOutlineEye size={20} color={"#4840bb"}/>}
+                </button>
+                {errors.password && (
+                    <span className="text-red-500 text-sm mt-1">
+                        {errors.password?.message}
+                    </span>
+                )}
+            </div>
 
             <div className="flex mt-6">
                 <button
