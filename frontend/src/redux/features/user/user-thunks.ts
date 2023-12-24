@@ -11,11 +11,13 @@ interface CreateUserInputs {
     password_confirmation: string;
 }
 
+const api_url = process.env.NEXT_PUBLIC_API_URL;
+
 export const createUserThunk = createAsyncThunk(
     'user/createUser',
     async (userData: CreateUserInputs, thunkAPI) => {
         try {
-            const response = await fetch('http://127.0.0.1:4000/users', {
+            const response = await fetch(`${api_url}/users`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ user: userData }),
@@ -47,7 +49,7 @@ export const deleteUserThunk = createAsyncThunk(
     'user/deleteUser',
     async (userId: number, thunkAPI) => {
         try {
-            const response = await fetch(`http://127.0.0.1:4000/users/${userId}`, {
+            const response = await fetch(`${api_url}/users/${userId}`, {
                 method: 'DELETE',
                 headers: {
                     // Add your headers here (e.g., for authentication)

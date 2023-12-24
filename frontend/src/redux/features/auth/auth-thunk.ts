@@ -8,11 +8,13 @@ type LoginFormInputs = {
     password: string;
 };
 
+const api_url = process.env.NEXT_PUBLIC_API_URL;
+
 export const loginUserThunk = createAsyncThunk(
   'auth/loginUser',
   async (loginData: LoginFormInputs, { dispatch }) => {
     try {
-      const response = await fetch('http://127.0.0.1:4000/users/login', {
+      const response = await fetch(`${api_url}/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(loginData),
