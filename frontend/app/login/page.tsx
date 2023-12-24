@@ -8,8 +8,8 @@ import Link from 'next/link';
 import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai';
 import {useRouter} from "next/navigation";
 import {useDispatch} from 'react-redux';
-import type {AppDispatch} from '../redux/store';
-import {loginUserThunk} from '../redux/features/auth/auth-thunk';
+import type {AppDispatch} from '../../redux/store';
+import {loginUserThunk} from '../../redux/features/auth/auth-thunk';
 import toast from "react-hot-toast";
 
 
