@@ -68,4 +68,13 @@ group :test do
   gem "selenium-webdriver"
 end
 
+group :production do
+  gem 'pg'
+end
+
 gem "rack-cors", "~> 2.0"
+
+gem 'bcrypt', '~> 3.1.7'
+gem 'activeadmin'
+gem 'sassc'
+
