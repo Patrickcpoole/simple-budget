@@ -7,7 +7,7 @@ import { deleteUserThunk } from '@/redux/features/user/user-thunks';
 import {useDispatch} from 'react-redux';
 import {resetUser} from '@/redux/features/user/user-slice';
 import {logOut} from '@/redux/features/auth/auth-slice';
-import CustomDialog from '../components/CustomDialog';
+import CustomDialog from '../../components/CustomDialog';
 import type {AppDispatch} from '@/redux/store';
 
 
