@@ -6,10 +6,10 @@ import {useForm} from "react-hook-form";
 import * as yup from 'yup'; // Import yup for validation
 import {yupResolver} from '@hookform/resolvers/yup';
 
-import {createUserThunk} from "@/redux/features/user/user-thunks";
+import {createUserThunk} from "../../redux/features/user/user-thunks";
 import {useDispatch} from 'react-redux';
 import {useRouter} from "next/navigation";
-import {AppDispatch} from "@/redux/store";
+import {AppDispatch} from "../../redux/store";
 
 
 interface CreateAccountFormInputs {

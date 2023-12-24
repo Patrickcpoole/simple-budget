@@ -10,10 +10,10 @@ import { useDispatch } from "react-redux";
 import {useRouter} from "next/navigation";
 import Image from "next/image";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineLogin, AiOutlineUserAdd, AiOutlineLogout } from "react-icons/ai";
-import Logo from '../../public/wealthfront-small-logo.png'
-import { useAppSelector, AppDispatch } from "@/redux/store";
-import { toggleNavDrawer } from "@/redux/features/nav-slice";
-import { logOut } from "@/redux/features/auth/auth-slice";
+import Logo from '../public/wealthfront-small-logo.png'
+import { useAppSelector, AppDispatch } from "../redux/store";
+import { toggleNavDrawer } from "../redux/features/nav-slice";
+import { logOut } from "../redux/features/auth/auth-slice";
 
 function NavDrawer() {
     const isAuth = useAppSelector(state => state.authReducer.isAuth);

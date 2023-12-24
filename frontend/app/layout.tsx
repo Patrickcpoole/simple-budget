@@ -1,9 +1,9 @@
 import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
 
-import {ReduxProvider} from '@/redux/provider'
+import {ReduxProvider} from '../redux/provider'
 import '../globals.css'
-import NavDrawer from "@/components/NavDrawer";
+import NavDrawer from "../components/NavDrawer";
 import {
     AiOutlineInstagram,
     AiOutlineShopping,
@@ -11,7 +11,7 @@ import {
     AiOutlineYoutube,
     AiOutlineMenu
 } from "react-icons/ai";
-import Logo from "../../public/wealthfront-logo.png";
+import Logo from "../public/wealthfront-logo.png";
 import Image from "next/image";
 import React from "react";
 import {Toaster} from "react-hot-toast";
