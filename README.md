@@ -34,7 +34,7 @@ Welcome to the Wealthfront Account Creation App! This application is a Next.js C
 
 
 ## Live Demo
-Visit the live application at [wealthfront-app-link](https://wealthfront-account-creation.vercel.app/login)].
+Visit the live application at [wealthfront-app-link](https://wealthfront-account-creation.vercel.app/login).
 
 ## Contact Information
 For inquiries or further information, reach out at [patrickcpoole@gmail.com](mailto:patrickcpoole@gmail.com).
