@@ -76,7 +76,7 @@ function NavDrawer() {
                         height={100}
 
                     />
-                    <Divider className="w-full mt-8"/>
+                    <Divider className="w-full mt-4"/>
                     {!isAuth ? (
                         <>
 
