@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Link from "next/link";
 import {useForm} from "react-hook-form";
 import * as yup from 'yup'; // Import yup for validation
@@ -10,6 +10,7 @@ import {createUserThunk} from "../../redux/features/user/user-thunks";
 import {useDispatch} from 'react-redux';
 import {useRouter} from "next/navigation";
 import {AppDispatch} from "../../redux/store";
+import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
 
 
 interface CreateAccountFormInputs {
@@ -51,65 +52,85 @@ export default function CreateAccount() {
         resolver: yupResolver(validationSchema),
     });
 
+    const [showPassword, setShowPassword] = useState(false);
+
     const router = useRouter();
 
     const dispatch = useDispatch<AppDispatch>();
-  const onSubmit = (data: CreateAccountFormInputs) => {
-    dispatch(createUserThunk(data))
-        .unwrap()
-        .then((user) => {
-            console.log('User created:', user);
-            router.push('/login'); // or another route as needed
-        })
-        .catch((error) => {
-            console.error('Failed to create user:', error);
-            // Here you can handle errors or show additional messages if needed
-        });
-};
+    const onSubmit = (data: CreateAccountFormInputs) => {
+        dispatch(createUserThunk(data))
+            .unwrap()
+            .then((user) => {
+                console.log('User created:', user);
+                router.push('/login'); // or another route as needed
+            })
+            .catch((error) => {
+                console.error('Failed to create user:', error);
+                // Here you can handle errors or show additional messages if needed
+            });
+    };
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
 
     return (
-        <>
-            <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col gap-4 "
-            >
-                {inputInfoArray.map(({name, placeholder, type}, index) => (
-                    <div key={name} className="relative">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center justify-center gap-2 w-full">
+            {inputInfoArray.map(({name, placeholder, type}, index) => (
+                <div key={name} className="relative w-[90%] lg:w-[50%] flex flex-col items-center">
+                    {['password', 'password_confirmation'].includes(name) ? (
+                        <>
+                            <input
+                                {...register(name)}
+                                type={showPassword ? "text" : "password"}
+                                className="border border-gray-300 w-full p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+                                placeholder={placeholder}
+                            />
+                            <button
+                                type="button"
+                                onClick={togglePasswordVisibility}
+                                className="absolute inset-y-0 mb-4 right-0 pr-3 flex items-center justify-center text-sm leading-5"
+                            >
+                                {showPassword ? <AiOutlineEyeInvisible size={20} color={"#4840bb"}/> :
+                                    <AiOutlineEye size={20} color={"#4840bb"}/>}
+                            </button>
+                        </>
+                    ) : (
                         <input
                             {...register(name)}
                             type={type}
-                            className="border border-gray-300 p-2 w-[98%] rounded focus:outline-none focus:ring-2 focus:ring-primary"
+                            className="border border-gray-300 w-full p-2 w-[98%] rounded focus:outline-none focus:ring-2 focus:ring-primary"
                             placeholder={placeholder}
                         />
-                        {errors[name] && (
-                            <span className="text-red-500 text-sm mt-4 ml-1">
-              {errors[name]?.message}
-            </span>
-                        )}
+                    )}
+                    <div className="h-4">
+                        <span className="text-red-500 text-sm ml-1">
+                            {errors[name]?.message}
+                        </span>
                     </div>
-                ))}
-                <div className="flex mt-6">
-                    <Link href={"/login"}>
-                        <button
-                            style={{borderColor: '#4840bb'}}
-                            type="button"
-                            className="bg-white h-12 w-48 mr-[2%] border  hover:bg-primary hover:text-white text-primary font-bold py-2 px-4 rounded"
-                        >
-                            Back
-                        </button>
-                    </Link>
+                </div>
+            ))}
+            <div className="flex mt-6 w-full">
+                <Link href={"/login"} className="w-[50%] flex justify-end items-end ">
+                    <button
+                        style={{borderColor: '#4840bb'}}
+                        type="button"
+                        className="bg-white h-12  lg:w-[50%] md:w-[60%] w-[80%] mr-[1%] border text-sm  hover:bg-primary hover:text-white text-primary font-bold py-2 px-4 rounded"
+                    >
+                        Back
+                    </button>
+                </Link>
+                <div className="w-[50%] flex justify-start items-end ">
                     <button
                         type="submit"
-                        className="bg-primary h-12 w-48 ml-[2%] hover:bg-custom-gradient text-white font-bold py-2 px-4 rounded"
+                        className="bg-primary h-12 lg:w-[50%] md:w-[60%] w-[80%]  ml-[1%] text-sm lg:text-md lg:text-md hover:bg-custom-gradient text-white font-bold py-2 px-4 rounded"
                     >
                         Create Account
                     </button>
-
                 </div>
-            </form>
+            </div>
+        </form>
 
-        </>
     );
 }
