@@ -74,7 +74,7 @@ function NavDrawer() {
                         alt="Wealthfront Logo"
                         width={100}
                         height={100}
-
+                        className="mb-4"
                     />
                     <Divider className="w-full mt-4"/>
                     {!isAuth ? (
