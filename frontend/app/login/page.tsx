@@ -45,6 +45,7 @@ export default function Login() {
     const router = useRouter();
 
     const onSubmit = (data: LoginFormInputs) => {
+        toast.remove();
         dispatch(loginUserThunk(data))
             .unwrap()
             .then(() => {
@@ -71,23 +72,23 @@ export default function Login() {
 
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-4 w-auto items-center"
+            className="flex flex-col gap-2 w-full  items-center"
         >
-            <div className="relative w-[98%] flex flex-col">
+            <div className="relative w-[90%] lg:w-[50%] flex flex-col">
                 <input
                     {...register('email')}
                     type="email"
                     className="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="Email"
                 />
-                {errors.email && (
-                    <span className="text-red-500 text-sm mt-1">
+
+                    <span className="text-red-500 h-4   text-sm mt-1">
                         {errors.email?.message}
                     </span>
-                )}
+
             </div>
 
-            <div className="relative w-[98%] flex flex-col">
+            <div className="relative w-[90%] lg:w-[50%] flex flex-col">
                 <input
                     {...register('password')}
                     type={showPassword ? "text" : "password"}
@@ -97,30 +98,32 @@ export default function Login() {
                 <button
                     type="button"
                     onClick={togglePasswordVisibility}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                    className="absolute inset-y-0 mb-4 right-0 pr-3 flex items-center justify-center text-sm leading-5"
                 >
                     {showPassword ? <AiOutlineEyeInvisible size={20} color={"#4840bb"}/> : <AiOutlineEye size={20} color={"#4840bb"}/>}
                 </button>
-                {errors.password && (
-                    <span className="text-red-500 text-sm mt-1">
+
+                    <span className="text-red-500 h-4 text-sm mt-1">
                         {errors.password?.message}
                     </span>
-                )}
+
             </div>
 
-            <div className="flex mt-6">
+            <div className="flex mt-6 w-full">
+                <div className="w-[50%] flex justify-end items-end">
                 <button
                     style={{borderColor: '#4840bb'}}
                     type="submit"
-                    className="bg-white h-12 w-48 mr-[1%] border  hover:bg-primary hover:text-white text-primary font-bold py-2 px-4 rounded"
+                    className="bg-white h-12  lg:w-[50%] md:w-[60%] w-[80%] mr-[1%] border text-sm  hover:bg-primary hover:text-white text-primary font-bold py-2 px-4 rounded"
                 >
                     Log In
                 </button>
+                    </div>
 
-                <Link href={"/create-account"}>
+                <Link href={"/create-account"} className="w-[50%] flex flex-start">
                     <button
                         type="button"
-                        className="bg-primary h-12 w-48 ml-[1%] hover:bg-custom-gradient text-white font-bold py-2 px-4 rounded"
+                        className="bg-primary h-12 lg:w-[50%] md:w-[60%] w-[80%]  ml-[1%] text-sm lg:text-md lg:text-md hover:bg-custom-gradient text-white font-bold py-2 px-4 rounded"
                     >
                         Create Account
                     </button>

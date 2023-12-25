@@ -37,8 +37,8 @@ export default function RootLayout({
             <NavDrawer/>
             <div className="flex justify-center items-center h-screen">
 
-                <div className="bg-white pb-12 rounded-lg shadow-lg max-w-[50%] flex flex-col justify-center items-center w-full">
-                    <Image src={Logo} alt="Wealthfront Logo" width={400} height={400} />
+                <div className="bg-white pb-12 rounded-lg shadow-lg lg:max-w-[50%] max-w-[95%] flex flex-col justify-center items-center w-full">
+                    <Image src={Logo} alt="Wealthfront Logo" width={300} height={300} />
                     {children}
 
                 </div>
