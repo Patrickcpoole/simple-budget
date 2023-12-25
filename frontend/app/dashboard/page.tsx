@@ -1,15 +1,14 @@
 "use client";
 
 import React from 'react';
-import {useAppSelector} from "../../redux/store";
-import {useRouter} from 'next/navigation';
-import { deleteUserThunk } from '../../redux/features/user/user-thunks';
 import {useDispatch} from 'react-redux';
 import {resetUser} from '../../redux/features/user/user-slice';
+import { deleteUserThunk } from '../../redux/features/user/user-thunks';
 import {logOut} from '../../redux/features/auth/auth-slice';
-import CustomDialog from '../../components/CustomDialog';
+import {useAppSelector} from "../../redux/store";
 import type {AppDispatch} from '../../redux/store';
-
+import {useRouter} from 'next/navigation';
+import CustomDialog from '../../components/CustomDialog';
 
 
 export default function Dashboard() {
@@ -42,7 +41,6 @@ export default function Dashboard() {
     }
 };
 
-
     const handleClickOpen = () => {
         setOpenDialog(true);
     };
@@ -55,7 +53,7 @@ export default function Dashboard() {
         <>
             <div className="container mx-auto p-4">
                 {userData && isAuth && (
-                    <div className="max-w-2xl mx-auto shadow-md overflow-hidden">
+                    <div className="max-w-2xl mx-auto shadow-md overflow-x-scroll">
                         <table className="min-w-full leading-normal">
                             <thead>
                             <tr>

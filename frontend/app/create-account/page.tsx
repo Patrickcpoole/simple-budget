@@ -1,15 +1,15 @@
 "use client"
 
 import React, {useEffect, useState} from 'react'
+import {useDispatch} from 'react-redux';
+import {AppDispatch} from "../../redux/store";
+import {createUserThunk} from "../../redux/features/user/user-thunks";
+
 import Link from "next/link";
 import {useForm} from "react-hook-form";
 import * as yup from 'yup'; // Import yup for validation
 import {yupResolver} from '@hookform/resolvers/yup';
-
-import {createUserThunk} from "../../redux/features/user/user-thunks";
-import {useDispatch} from 'react-redux';
 import {useRouter} from "next/navigation";
-import {AppDispatch} from "../../redux/store";
 import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
 
 

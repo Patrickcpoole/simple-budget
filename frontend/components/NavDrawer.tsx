@@ -1,19 +1,18 @@
 "use client";
 
 import React from "react";
+import {useDispatch} from "react-redux";
+import {useAppSelector, AppDispatch} from "../redux/store";
+import {toggleNavDrawer} from "../redux/features/nav-slice";
+import {logOut} from "../redux/features/auth/auth-slice";
 import Drawer from "@mui/material/Drawer";
-import { useTheme } from "@mui/material/styles";
+import {useTheme} from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Divider from "@mui/material/Divider";
-
-import { useDispatch } from "react-redux";
 import {useRouter} from "next/navigation";
 import Image from "next/image";
-import { AiOutlineClose, AiOutlineMenu, AiOutlineLogin, AiOutlineUserAdd, AiOutlineLogout } from "react-icons/ai";
+import {AiOutlineClose, AiOutlineMenu, AiOutlineLogin, AiOutlineUserAdd, AiOutlineLogout} from "react-icons/ai";
 import Logo from '../public/wealthfront-small-logo.png'
-import { useAppSelector, AppDispatch } from "../redux/store";
-import { toggleNavDrawer } from "../redux/features/nav-slice";
-import { logOut } from "../redux/features/auth/auth-slice";
 
 function NavDrawer() {
     const isAuth = useAppSelector(state => state.authReducer.isAuth);
@@ -29,23 +28,24 @@ function NavDrawer() {
     }
 
     const handleLogout = () => {
-        router.push('/login')
+        handleToggleDrawer(false);
+        router.push('/login');
         dispatch(logOut());
     };
 
     const handleNavigateAuth = (path: string) => () => {
         handleToggleDrawer(false);
-        router.push('/' + path)
+        router.push('/' + path);
     }
 
     return (
         <>
-            <div className="absolute top-0 left-0 pt-4 pl-4">
+            <div className="top-0 left-0 pt-4 pl-4">
                 <button
                     onClick={() => handleToggleDrawer(true)}
                     className="text-white hover:text-primary focus:outline-none focus:text-primary"
                 >
-                    <AiOutlineMenu color={"#4840bb"} size={35} />
+                    <AiOutlineMenu color={"#4840bb"} size={35}/>
                 </button>
             </div>
             <Drawer
@@ -76,26 +76,28 @@ function NavDrawer() {
                         height={100}
 
                     />
-                    <Divider className="w-full mt-8" />
+                    <Divider className="w-full mt-8"/>
                     {!isAuth ? (
                         <>
 
-                                <button onClick={handleNavigateAuth('login')} className="flex w-44 justify-center items-center mt-4 bg-primary text-white font-bold py-2 px-4 rounded hover:bg-custom-gradient">
-                                    <AiOutlineLogin className="mr-2" /> Login
-                                </button>
+                            <button onClick={handleNavigateAuth('login')}
+                                    className="flex w-44 justify-center items-center mt-4 bg-primary text-white font-bold py-2 px-4 rounded hover:bg-custom-gradient">
+                                <AiOutlineLogin className="mr-2"/> Login
+                            </button>
 
 
-                                <button onClick={handleNavigateAuth('create-account')} className="flex items-center mt-4 bg-primary text-white font-bold py-2 px-4 rounded hover:bg-custom-gradient">
-                                    <AiOutlineUserAdd className="mr-2" /> Create Account
-                                </button>
+                            <button onClick={handleNavigateAuth('create-account')}
+                                    className="flex items-center mt-4 bg-primary text-white font-bold py-2 px-4 rounded hover:bg-custom-gradient">
+                                <AiOutlineUserAdd className="mr-2"/> Create Account
+                            </button>
 
                         </>
                     ) : (
                         <button
                             onClick={handleLogout}
-                            className="flex w-44  items-center mt-4 bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-700"
+                            className="flex w-44  items-center mt-4 bg-primary hover:bg-custom-gradient text-white font-bold py-2 px-4 rounded "
                         >
-                            <AiOutlineLogout className="mr-2" /> Logout
+                            <AiOutlineLogout className="mr-2"/> Logout
                         </button>
                     )}
                 </div>
