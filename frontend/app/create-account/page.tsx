@@ -78,7 +78,7 @@ export default function CreateAccount() {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center justify-center gap-2 w-full">
             {inputInfoArray.map(({name, placeholder, type}, index) => (
-                <div key={name} className="relative w-[90%] lg:w-[50%] flex flex-col items-center">
+                <div key={name} className="relative w-[90%] lg:w-[50%] flex flex-col ">
                     {['password', 'password_confirmation'].includes(name) ? (
                         <>
                             <input
