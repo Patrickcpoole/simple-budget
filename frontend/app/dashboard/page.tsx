@@ -51,9 +51,9 @@ export default function Dashboard() {
 
     return (
         <>
-            <div className="container mx-auto p-4">
+            <div className="p-4 flex flex-col justify-center">
                 {userData && isAuth && (
-                    <div className="max-w-2xl mx-auto shadow-md overflow-x-scroll">
+                    <div className="max-w-2xl  shadow-md overflow-x-scroll">
                         <table className="min-w-full leading-normal">
                             <thead>
                             <tr>
