@@ -1,6 +1,6 @@
-# Wealthfront Account Creation App
+# Simple Budget
 
-Welcome to the Wealthfront Account Creation App! This application is a Next.js CRUD application with a Ruby on Rails backend that allows users to create an account and log in to a fake financial service. The application also uses react hook forms to handle form validation and submission.
+Welcome to Simple Budget App! This project was for a companies' take-home coding assignment where I was tasked with building a create account form with proper validation and error handling. I intend to convert and build out this project using the Ruby on Rails backend and NextJS frontend to create a simple budgeting app.
 
 ## Table of Contents
 
