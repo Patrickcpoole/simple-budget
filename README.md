@@ -1,6 +1,6 @@
 # Simple Budget
 
-Welcome to Simple Budget App! This project was for a companies' take-home coding assignment where I was tasked with building a create account form with proper validation and error handling. I intend to convert and build out this project using the Ruby on Rails backend and NextJS frontend to create a simple budgeting app.
+Welcome to Simple Budget! This project was for a companies' take-home coding assignment where I was tasked with building a create account form with proper validation and error handling. I intend to convert and build out this project using the Ruby on Rails backend and NextJS frontend to create a simple budgeting app.
 
 ## Table of Contents
 
