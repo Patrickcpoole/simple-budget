@@ -40,14 +40,7 @@ function NavDrawer() {
 
     return (
         <>
-            <div className="top-0 left-0 pt-4 pl-4">
-                <button
-                    onClick={() => handleToggleDrawer(true)}
-                    className="text-white hover:text-primary focus:outline-none focus:text-primary"
-                >
-                    <AiOutlineMenu color={"#4840bb"} size={35}/>
-                </button>
-            </div>
+            
             <Drawer
                 sx={{
                     width: isSmallerScreen ? "100%" : "300px",
