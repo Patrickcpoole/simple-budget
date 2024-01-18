@@ -8,11 +8,13 @@ export default function Dashboard() {
     
 
     return (
-        <div>
-            <h1>Good Morning Sierra!</h1>
+        <div className='md:w-[90%] w-full '>
+            <h1 className='my-6'>Good Morning Sierra!</h1>
+            <div className='flex justify-center items-center'>
+              
             <CreateBudget />
-            <CreateExpense />
-            
+            {/* <CreateExpense /> */}
+            </div>
         </div>
     );
 }

@@ -1,10 +1,20 @@
-import React from 'react'
-
+import React, {useState} from 'react'
+import CardForm from './BudgetForm';
 function CreateExpense() {
+  const [expenseAmount, setExpenseAmount] = useState(3.50)
+  const [expenseType, setExpenseType] = useState('Monthly');
+  const [expenseTitle, setExpenseTitle] = useState('Groceries');
+
+  const expenseData = {
+    title: expenseTitle,
+    type: expenseType,
+    amount: expenseAmount
+  }
   return (
-    <div className='w-[45%]'>
-      <h2>CreateExpense</h2>
-      </div>
+   <>
+      <CardForm title={expenseData.title} type={expenseData.type} amount={expenseData.amount}/>
+
+      </>
   )
 }
 
