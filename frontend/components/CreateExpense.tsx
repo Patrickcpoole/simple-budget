@@ -12,7 +12,11 @@ function CreateExpense() {
   }
   return (
    <>
-      <CardForm title={expenseData.title} type={expenseData.type} amount={expenseData.amount}/>
+      <div className='flex justify-center items-center'>
+      {toggledCreateBudget ? <CardForm title={expenseData.title} type={expenseData.type} amount={expenseData.amount}/>
+      : <button onClick={() => setToggledCreateBudget(true)}>Add a Budget</button>}
+
+      </div>
 
       </>
   )

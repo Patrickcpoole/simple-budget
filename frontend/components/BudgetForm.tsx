@@ -28,7 +28,7 @@ function CardForm({ onSubmit }: FormProps) {
 	];
 
 	return (
-		<div className='bg-white md:w-[45%] w-full p-4 rounded-md'>
+		<div className='bg-white  w-full p-4 rounded-md'>
 			<h4 className='mb-6'>Create Budget</h4>
 			<form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
 				<label className='flex flex-col font-semibold'>
