@@ -8,12 +8,14 @@ import Logo from '../public/wealthfront-logo.png';
 import Image from 'next/image';
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
-
 const inter = Inter({ subsets: ['latin'] });
 
+import '@mantine/core/styles.css';
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+
 export const metadata: Metadata = {
-	title: 'Create Account Wealthfront',
-	description: 'Sample Create Account Page for Wealthfront Code Challenge',
+	title: 'Simple Budget',
+	description: 'The easiest budgeting app you will ever use.',
 };
 
 export default function RootLayout({
@@ -23,16 +25,20 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-      
+			<head>
+				<ColorSchemeScript />
+			</head>
 			<body className={inter.className}>
 				<ReduxProvider>
-					<header className=''>
-						<Navbar />
-					</header>
+					<MantineProvider>
+						<header className=''>
+							<Navbar />
+						</header>
 						<NavDrawer />
-                        <main className='overflow-x-hidden bg-red-500 w-full'>
-						{children}
-                        </main>
+						<main className='overflow-x-hidden bg-red-500 w-full'>
+							{children}
+						</main>
+					</MantineProvider>
 				</ReduxProvider>
 				<Toaster />
 			</body>
