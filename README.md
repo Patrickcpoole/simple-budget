@@ -24,7 +24,7 @@ Welcome to Simple Budget! This project was for a companies' take-home coding ass
 - Next.js
 - React Hook Form
 - Redux Toolkit
-- Tailwind CSS
+- Maintine UI
 - React Router
 
 ## Configuration
