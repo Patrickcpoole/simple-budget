@@ -9,8 +9,9 @@ const config: Config = {
     extend: {
         colors: {
             'primary': '#7AACC3',
-            'danger': '##FF5353',
-            'background': '#F8F8F8'
+            'danger': '#FF5353',
+            'background': '#F8F8F8',
+            'text': '#333333'
         },
 
 
