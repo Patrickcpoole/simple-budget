@@ -28,14 +28,14 @@ export default function RootLayout({
 			<head>
 				<ColorSchemeScript />
 			</head>
-			<body className={inter.className}>
+			<body className='bg-background'>
 				<ReduxProvider>
 					<MantineProvider>
 						<header className=''>
 							<Navbar />
 						</header>
 						<NavDrawer />
-						<main className='overflow-x-hidden bg-red-500 w-full'>
+						<main className='overflow-x-hidden w-full flex flex-col justify-start items-center'>
 							{children}
 						</main>
 					</MantineProvider>

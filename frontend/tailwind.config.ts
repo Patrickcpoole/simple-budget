@@ -8,8 +8,9 @@ const config: Config = {
   theme: {
     extend: {
         colors: {
-            'primary': '#4840bb',
-            'customGradient': 'linear-gradient(180deg, rgba(72,64,187,1) 0%, rgba(186,92,48,1) 100%)',
+            'primary': '#7AACC3',
+            'danger': '##FF5353',
+            'background': '#F8F8F8'
         },
 
 
