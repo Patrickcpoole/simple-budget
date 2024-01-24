@@ -3,10 +3,10 @@
 import React from 'react';
 
 // Components
-import CreateBudget from '../../components/CreateBudget';
-import CreateExpense from '../../components/CreateExpense';
-import Budgets from '../../components/Budgets';
-import Expenses from '../../components/Expenses';
+import CreateBudget from '../../components/Budget/CreateBudget';
+import CreateExpense from '../../components/Expense/CreateExpense';
+import Budgets from '../../components/Budget/Budgets';
+import Expenses from '../../components/Expense/Expenses';
 import CreateButton from '../../components/CreateButton';
 
 // External UI Imports
@@ -21,12 +21,61 @@ export default function Dashboard() {
 	}
 
 	interface Budget {
+        id: number
 		name: string;
 		amount: number;
 		expenses: Expense[];
 	}
 
-	const budgets: Budget[] = [];
+	const budgets: Budget[] = [
+        {
+            id: 1,
+            name: 'Groceries',
+            amount: 800,
+            expenses: [
+                {
+                    name: 'King Soopers',
+                    amount: 120.65,
+                },
+            
+            ]
+        },
+        {   
+            id: 2,
+            name: 'Entertainment',
+            amount: 300,
+            expenses: [
+                {
+                    name: 'Alama Drafthouse',
+                    amount: 50.27,
+                },
+                {
+                    name: 'HBO Max',
+                    amount: 15.99,
+                },
+                {
+                    name: 'Nuggets Basketball Game',
+                    amount: 102.01,
+                }
+            ]
+        },
+        {
+            id: 3,
+            name: 'Hobbies',
+            amount: 500,
+            expenses: [
+                {
+                    name: 'Kodak Film',
+                    amount: 80.50,
+                },
+                {
+                    name: 'Mikes Camera',
+                    amount: 15.99,
+                },
+               
+            ]
+        }
+    ];
 	const expenses: Expense[] = [];
 
 	return (

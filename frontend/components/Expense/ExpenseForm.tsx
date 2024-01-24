@@ -56,4 +56,4 @@ function ExpenseForm({ onSubmit, formTitle }: FormProps) {
 	);
 }
 
-export default CardForm;
+export default ExpenseForm;

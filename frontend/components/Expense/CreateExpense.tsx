@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import CardForm from './BudgetForm';
+import CardForm from '../Budget/BudgetForm';
 function CreateExpense() {
   const [expenseAmount, setExpenseAmount] = useState(3.50)
   const [expenseType, setExpenseType] = useState('Monthly');
@@ -12,11 +12,8 @@ function CreateExpense() {
   }
   return (
    <>
-      <div className='flex justify-center items-center'>
-      {toggledCreateBudget ? <CardForm title={expenseData.title} type={expenseData.type} amount={expenseData.amount}/>
-      : <button onClick={() => setToggledCreateBudget(true)}>Add a Budget</button>}
 
-      </div>
+
 
       </>
   )

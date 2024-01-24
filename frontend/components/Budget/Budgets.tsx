@@ -1,4 +1,5 @@
 import React from 'react';
+import BudgetCard from './BudgetCard';
 
 interface Expense {
   name: string;
@@ -7,6 +8,7 @@ interface Expense {
 }
 
 interface Budget {
+  id: number;
   name: string;
   amount: number;
   expenses: Expense[];
@@ -28,9 +30,7 @@ function Budgets({ budgets }: BudgetsProps) {
     <div>
       <ul>
         {budgets.map(budget => (
-          <li key={budget.name}>
-            {budget.name}: {budget.amount}
-          </li>
+          <BudgetCard key={budget.id} budgetData={budget}/>
         ))} 
       </ul>
     </div>
