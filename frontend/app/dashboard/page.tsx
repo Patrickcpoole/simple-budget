@@ -24,6 +24,7 @@ export default function Dashboard() {
         id: number
 		name: string;
 		amount: number;
+        chosenColor: string;
 		expenses: Expense[];
 	}
 
@@ -32,6 +33,7 @@ export default function Dashboard() {
             id: 1,
             name: 'Groceries',
             amount: 800,
+            chosenColor: '#0C6900',
             expenses: [
                 {
                     name: 'King Soopers',
@@ -44,6 +46,7 @@ export default function Dashboard() {
             id: 2,
             name: 'Entertainment',
             amount: 300,
+            chosenColor: '#FF5353',
             expenses: [
                 {
                     name: 'Alama Drafthouse',
@@ -63,6 +66,7 @@ export default function Dashboard() {
             id: 3,
             name: 'Hobbies',
             amount: 500,
+            chosenColor: '#007CAA',
             expenses: [
                 {
                     name: 'Kodak Film',

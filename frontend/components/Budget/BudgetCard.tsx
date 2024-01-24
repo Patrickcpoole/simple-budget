@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Card, Avatar, Text, Progress, Badge, Group, ActionIcon } from '@mantine/core';
+import { Card, Avatar, Text, Progress, Badge, Group, Button, ActionIcon, useMantineTheme} from '@mantine/core';
 const avatars = [
   'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-2.png',
   'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-4.png',
@@ -17,51 +17,34 @@ interface Budget {
   id: number;
   name: string;
   amount: number;
+  chosenColor: string;
   expenses: Expense[];
 }
 
 
 interface BudgetData {
-  budget: Budget
+  budgetData: Budget
 }
 
 
-function BudgetCard({ budget }: BudgetData) {
+function BudgetCard({ budgetData }: BudgetData) {
+
+  const totalExpenses = budgetData.expenses.reduce((acc, expense) => acc + expense.amount, 0);
+  const amountRemaining = budgetData.amount - totalExpenses;
+  const progressValue = (totalExpenses / budgetData.amount) * 100;
+  const theme = useMantineTheme();
   return (
-    <Card withBorder padding="lg" radius="md">
-      <Group justify="space-between">
-        
-        <Badge>12 days left</Badge>
-      </Group>
-
-      <Text fz="lg" fw={500} mt="md">
-        5.3 minor release (September 2022)
-      </Text>
-      <Text fz="sm" c="dimmed" mt={5}>
-        Form context management, Switch, Grid and Indicator components improvements, new hook and
-        10+ other changes
-      </Text>
-
-      <Text c="dimmed" fz="sm" mt="md">
-        Tasks completed:{' '}
-        <Text span fw={500} c="bright">
-          23/36
-        </Text>
-      </Text>
-
-      <Progress value={(23 / 36) * 100} mt={5} />
-
-      <Group justify="space-between" mt="md">
-        <Avatar.Group spacing="sm">
-          <Avatar src={avatars[0]} radius="xl" />
-          <Avatar src={avatars[1]} radius="xl" />
-          <Avatar src={avatars[2]} radius="xl" />
-          <Avatar radius="xl">+5</Avatar>
-        </Avatar.Group>
-        <ActionIcon variant="default" size="lg" radius="md">
-          {/* <IconUpload size="1.1rem" /> */}
-        </ActionIcon>
-      </Group>
+    <Card className='w-full md:w-[30%] md:mr-4 mt-4' withBorder padding="lg" radius="lg" style={{borderColor: budgetData.chosenColor, borderWidth:'3px',  boxShadow:' rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;'}} >
+      <div className='flex justify-between mb-2'>
+        <h4 style={{color: budgetData.chosenColor, fontWeight: 600}}>{budgetData.name}</h4>
+        <p style={{color: budgetData.chosenColor}}>${budgetData.amount} Budgeted</p>
+      </div>
+      <Progress value={progressValue} mt={5} size={20} radius={15} color={budgetData.chosenColor} />
+      <div className='flex justify-between my-4'>
+        <p style={{color: budgetData.chosenColor}}>${totalExpenses} Spent</p>
+        <p>${amountRemaining} Remaining</p>
+      </div>
+      <Button variant='outline' color={budgetData.chosenColor} radius='xl'>View Details</Button>
     </Card>
   )
 }
