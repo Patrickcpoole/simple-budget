@@ -11,12 +11,17 @@ import { Toaster } from 'react-hot-toast';
 const inter = Inter({ subsets: ['latin'] });
 
 import '@mantine/core/styles.css';
-import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import { ColorSchemeScript, MantineProvider, createTheme } from '@mantine/core';
 
 export const metadata: Metadata = {
 	title: 'Simple Budget',
 	description: 'The easiest budgeting app you will ever use.',
 };
+
+const theme = createTheme({
+  fontFamily: 'Open Sans, sans-serif',
+  primaryColor: 'var(--color-primary)',
+});
 
 export default function RootLayout({
 	children,
@@ -30,7 +35,13 @@ export default function RootLayout({
 			</head>
 			<body className='bg-background'>
 				<ReduxProvider>
-					<MantineProvider>
+				<MantineProvider
+      theme={{
+        colors: {
+          'primary': ['#7AACC3', '#7AACC3', '#7AACC3', '#7AACC3', '#7AACC3', '#7AACC3', '#7AACC3', '#7AACC3', '#7AACC3', '#7AACC3'],
+        },
+      }}
+    >
 						<header className=''>
 							<Navbar />
 						</header>

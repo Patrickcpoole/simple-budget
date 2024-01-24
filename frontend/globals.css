@@ -48,6 +48,71 @@ h4 {
   color: #333;
 }
 
+.create-button-container {
+
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 200px;
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.button-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s;
+}
+
+.button-icon:hover {
+  font-size: 1.5rem;
+  transition: transform 0.3s;
+  color:#fff;
+}
+
+.create-button-container.open .button-icon {
+  transform: rotate(45deg);
+}
+
+.floating-buttons {
+  position: absolute;
+ 
+  width: auto;
+  bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s;
+  margin-bottom: 15px;
+}
+
+.create-button-container.open .floating-buttons {
+  transform: scaleY(1);
+}
+
+.floating-button {
+  background-color: #ffffff;
+  border: 2px solid #7AACC3;
+  color: #7AACC3;
+  padding: 4px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: auto;
+  
+}
+
+.floating-button:hover {
+  background-color: #7AACC3;
+}
+
+
 @media (max-width: 768px) {
   h1 {
     font-size: 2.5rem;
