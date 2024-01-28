@@ -8,9 +8,12 @@ const avatars = [
 ];
 
 interface Expense {
+  id: number;
   name: string;
   amount: number;
-  // other properties as needed
+  budgetId?: number;
+  budgetName?: string;
+  budgetColor?: string;
 }
 
 interface Budget {
@@ -18,18 +21,22 @@ interface Budget {
   name: string;
   amount: number;
   chosenColor: string;
-  expenses: Expense[];
+}
+
+interface BudgetCardProps {
+  budgetData: Budget;
+  expenseData: Expense[];
 }
 
 
-interface BudgetData {
-  budgetData: Budget
-}
 
 
-function BudgetCard({ budgetData }: BudgetData) {
 
-  const totalExpenses = budgetData.expenses.reduce((acc, expense) => acc + expense.amount, 0);
+
+
+function BudgetCard({ budgetData, expenseData }: BudgetCardProps) {
+
+  const totalExpenses = expenseData.reduce((acc, expense) => acc + expense.amount, 0);
   const amountRemaining = budgetData.amount - totalExpenses;
   const progressValue = (totalExpenses / budgetData.amount) * 100;
   const theme = useMantineTheme();

@@ -15,9 +15,12 @@ import { Divider } from '@mantine/core';
 
 export default function Dashboard() {
 	interface Expense {
+        id: number;
 		name: string;
 		amount: number;
-		// other properties as needed
+		budgetId?: number;
+        budgetName?: string;
+        budgetColor?: string;
 	}
 
 	interface Budget {
@@ -25,8 +28,53 @@ export default function Dashboard() {
 		name: string;
 		amount: number;
         chosenColor: string;
-		expenses: Expense[];
+		
 	}
+
+    const expenses: Expense[] = [
+        {
+            id: 1,
+            name: 'King Soopers',
+            amount: 120.65,
+            budgetId: 1,
+        },
+        {
+            id: 2,
+            name: 'Alamo Drafthouse',
+            amount: 50.27,
+            budgetId: 2,
+
+        },
+        {
+            id: 3,
+            name: 'HBO Max',
+            amount: 15.99,
+            budgetId: 2,
+      
+
+        },
+        {
+            id: 4,
+            name: 'Nuggets Basketball Game',
+            amount: 102.01,
+            budgetId: 2,
+
+        },
+        {
+            id: 5,
+            name: 'Kodak Film',
+            amount: 80.50,
+            budgetId: 3,
+
+        },
+        {
+            id: 6,
+            name: 'Mikes Camera',
+            amount: 15.99,
+            budgetId: 3,
+
+        },
+    ]
 
 	const budgets: Budget[] = [
         {
@@ -34,53 +82,32 @@ export default function Dashboard() {
             name: 'Groceries',
             amount: 800,
             chosenColor: '#0C6900',
-            expenses: [
-                {
-                    name: 'King Soopers',
-                    amount: 120.65,
-                },
-            
-            ]
         },
         {   
             id: 2,
             name: 'Entertainment',
             amount: 300,
             chosenColor: '#FF5353',
-            expenses: [
-                {
-                    name: 'Alama Drafthouse',
-                    amount: 50.27,
-                },
-                {
-                    name: 'HBO Max',
-                    amount: 15.99,
-                },
-                {
-                    name: 'Nuggets Basketball Game',
-                    amount: 102.01,
-                }
-            ]
+           
         },
         {
             id: 3,
             name: 'Hobbies',
             amount: 500,
             chosenColor: '#007CAA',
-            expenses: [
-                {
-                    name: 'Kodak Film',
-                    amount: 80.50,
-                },
-                {
-                    name: 'Mikes Camera',
-                    amount: 15.99,
-                },
-               
-            ]
+        
         }
     ];
-	const expenses: Expense[] = [];
+
+  
+	function addBudgetDetailsToExpense(expense:Expense) {
+        const budget = budgets.find(b => b.id === expense.budgetId);
+        return {
+            ...expense,
+            budgetName: budget ? budget.name : 'Unknown',
+            budgetColor: budget ? budget.chosenColor : '#000' // Default color if budget is not found
+        };
+    }
 
 	return (
 		<>
@@ -94,11 +121,11 @@ export default function Dashboard() {
 				</h1>
 				<h2 className='mt-4'>Budgets</h2>
 				<Divider size='sm' color='#333' />
-				<Budgets budgets={budgets} />
+				<Budgets budgets={budgets} expenses={expenses}/>
 
 				<h2 className='mt-8'>Expenses</h2>
 				<Divider size='sm' color='#333' />
-				<Expenses expenses={expenses} />
+                <Expenses expenses={expenses.map(addBudgetDetailsToExpense)} />
 				{/* <CreateBudget /> */}
 				{/* <CreateExpense /> */}
 			</div>
