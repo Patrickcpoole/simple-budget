@@ -1,12 +1,15 @@
 import React from 'react';
 import ExpenseCard from './ExpenseCard';
+import * as Icons from 'react-icons/md'; // Import all icons
 
 interface Expense {
-	name: string;
-	amount: number;
-	budgetId?: number;
-	budgetName?: string;
-	budgetColor?: string;
+  id: number;
+  name: string;
+  amount: number;
+  budgetId?: number;
+  budgetName?: string;
+  budgetColor?: string;
+  iconName?: keyof typeof Icons | undefined; // Update to keyof typeof Icons
 }
 
 interface ExpenseProps {

@@ -1,56 +1,59 @@
 import React from 'react';
-
 import {
-	Card,
-	Avatar,
-	Text,
-	Progress,
-	Badge,
-	Group,
-	Button,
-	ActionIcon,
-	useMantineTheme,
+  Card,
+  Avatar,
+  useMantineTheme,
 } from '@mantine/core';
-const avatars = [
-	'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-2.png',
-	'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-4.png',
-	'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-7.png',
-];
+import * as Icons from 'react-icons/md'; // Import all icons
 
 interface Expense {
-	id: number;
-	name: string;
-	amount: number;
-	budgetId?: number;
-	budgetName?: string;
-	budgetColor?: string;
+  id: number;
+  name: string;
+  amount: number;
+  budgetId?: number;
+  budgetName?: string;
+  budgetColor?: string;
+  iconName?: keyof typeof Icons | undefined; // Update to keyof typeof Icons
 }
 
-interface expenseData {
-	expenseData: Expense;
+interface ExpenseData {
+  expenseData: Expense;
 }
 
-function ExpenseCard({ expenseData }: expenseData) {
-	const theme = useMantineTheme();
-	return (
-		<Card
-			className='w-full md:w-[30%] md:mr-4 mt-4'
-			withBorder
-			padding='lg'
-			radius='lg'
-			style={{
-				borderColor: expenseData.budgetColor,
-				borderWidth: '3px',
-				boxShadow:
-					' rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;',
-			}}
-		>
+// Component to render the dynamic icon
+const BudgetIcon: React.FC<{ iconName?: keyof typeof Icons, color: string }> = ({ iconName, color }) => {
+  const IconComponent = iconName ? Icons[iconName] : Icons.MdHelpOutline;
+  return <IconComponent style={{ color }} />;
+};
+
+
+
+function ExpenseCard({ expenseData }: ExpenseData) {
+
+  const budgetColor = expenseData.budgetColor || 'defaultColor'; 
+  const theme = useMantineTheme();
+
+  return (
+    <Card
+      className='w-full md:w-[30%] md:mr-4 mt-4'
+      withBorder
+      padding='lg'
+      radius='lg'
+      style={{
+        borderColor: expenseData.budgetColor,
+        borderWidth: '3px',
+        boxShadow: 'rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px',
+      }}
+    >
       <div className='flex justify-between mb-2'>
-        <h4 style={{color: expenseData.budgetColor, fontWeight: 600}}>{expenseData.name}</h4>
-        <p style={{color: expenseData.budgetColor}}>${expenseData.amount}</p>
-        </div>
+        <Avatar radius="xl" color={expenseData.budgetColor}>
+          <BudgetIcon iconName={expenseData.iconName} color={budgetColor} />
+        </Avatar>
+        <h4 style={{ color: expenseData.budgetColor, fontWeight: 600 }}>{expenseData.name}</h4>
+        <p style={{ color: expenseData.budgetColor }}>${expenseData.amount}</p>
+      </div>
     </Card>
-	);
+  );
 }
 
 export default ExpenseCard;

@@ -2,6 +2,7 @@ import React from 'react';
 import BudgetCard from './BudgetCard';
 
 interface Expense {
+  id: number;
 	name: string;
 	amount: number;
 	budgetId?: number;
@@ -24,9 +25,7 @@ type BudgetsProps = {
 
 
 function Budgets( {budgets, expenses}: BudgetsProps) {
-  
-  const getBudgetExpenses = (budgetId: number) => {
-
+    const getBudgetExpenses = (budgetId: number) => {
     return expenses.filter(expense => expense.budgetId === budgetId)
   }
 

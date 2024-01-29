@@ -9,6 +9,8 @@ import Budgets from '../../components/Budget/Budgets';
 import Expenses from '../../components/Expense/Expenses';
 import CreateButton from '../../components/CreateButton';
 
+import * as Icons from 'react-icons/md';
+
 // External UI Imports
 import { MdWbSunny } from 'react-icons/md';
 import { Divider } from '@mantine/core';
@@ -21,6 +23,7 @@ export default function Dashboard() {
 		budgetId?: number;
         budgetName?: string;
         budgetColor?: string;
+        iconName?: keyof typeof Icons | undefined; // Update to keyof typeof Icons
 	}
 
 	interface Budget {
@@ -28,7 +31,7 @@ export default function Dashboard() {
 		name: string;
 		amount: number;
         chosenColor: string;
-		
+		chosenIcon: keyof typeof Icons | undefined; // Ensure this matches iconName in Expense
 	}
 
     const expenses: Expense[] = [
@@ -82,12 +85,14 @@ export default function Dashboard() {
             name: 'Groceries',
             amount: 800,
             chosenColor: '#0C6900',
+            chosenIcon: 'MdShoppingCart',
         },
         {   
             id: 2,
             name: 'Entertainment',
             amount: 300,
             chosenColor: '#FF5353',
+            chosenIcon: 'MdLocalMovies'
            
         },
         {
@@ -95,6 +100,7 @@ export default function Dashboard() {
             name: 'Hobbies',
             amount: 500,
             chosenColor: '#007CAA',
+            chosenIcon: 'MdCameraAlt'
         
         }
     ];
@@ -105,7 +111,9 @@ export default function Dashboard() {
         return {
             ...expense,
             budgetName: budget ? budget.name : 'Unknown',
-            budgetColor: budget ? budget.chosenColor : '#000' // Default color if budget is not found
+            budgetColor: budget ? budget.chosenColor : '#000',
+            iconName: budget ? budget.chosenIcon : undefined,
+
         };
     }
 
