@@ -29,7 +29,7 @@ const CreateButton: React.FC = () => {
 	};
 
 	const handleOpenCreateModal = (type:string) => {
-
+		console.log('type being passed', type);
 	}
 
 	
