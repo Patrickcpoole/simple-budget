@@ -28,6 +28,12 @@ const CreateButton: React.FC = () => {
 		setIsOpen(!isOpen);
 	};
 
+	const handleOpenCreateModal = (type:string) => {
+
+	}
+
+	
+
 	return (
 		<div className={`create-button-container ${isOpen ? 'open' : ''}`}>
 
@@ -45,8 +51,8 @@ const CreateButton: React.FC = () => {
 
 			{isOpen && (
 				<div className='floating-buttons'>
-					<button className='floating-button'>Create Budget</button>
-					<button className='floating-button'>Create Expense</button>
+					<button className='floating-button' onClick={() => handleOpenCreateModal('budget')}>Create Budget</button>
+					<button className='floating-button' onClick={() => handleOpenCreateModal('expense')}>Create Expense</button>
 				</div>
 			)}
 		</div>
