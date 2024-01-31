@@ -1,6 +1,7 @@
 import {configureStore, ThunkAction, Action} from "@reduxjs/toolkit";
 import authReducer from "./features/auth/auth-slice";
 import navReducer from "./features/nav-slice";
+import modalReducer from './features/modal-slice'; // Your new modal slice
 import userReducer from "./features/user/user-slice";
 import {TypedUseSelectorHook} from "react-redux";
 import {useSelector} from "react-redux";
@@ -9,6 +10,7 @@ export const store = configureStore({
     authReducer,
     userReducer,
     navReducer,
+    modalReducer
   }
 });
 
