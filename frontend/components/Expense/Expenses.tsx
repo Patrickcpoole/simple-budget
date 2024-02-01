@@ -26,7 +26,7 @@ function Expenses({ expenses }: ExpenseProps) {
 					bottom right to get started.
 				</p>
 			) : (
-				<div className='flex flex-col md:flex-row h-auto'>
+				<div className='flex flex-col md:flex-row h-auto flex-wrap'>
 					{expenses.map((expense) => (
 						<ExpenseCard key={expense.id} expenseData={expense} />
 					))}

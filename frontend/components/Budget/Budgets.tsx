@@ -12,6 +12,7 @@ interface Expense {
 
 interface Budget {
   id: number;
+  slug: string;
   name: string;
   amount: number;
   chosenColor: string;

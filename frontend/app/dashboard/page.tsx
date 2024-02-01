@@ -29,6 +29,7 @@ export default function Dashboard() {
 
 	interface Budget {
         id: number
+        slug: string;
 		name: string;
 		amount: number;
         chosenColor: string;
@@ -89,6 +90,7 @@ export default function Dashboard() {
 	const budgets: Budget[] = [
         {
             id: 1,
+            slug: 'groceries',
             name: 'Groceries',
             amount: 800,
             chosenColor: '#0C6900',
@@ -96,6 +98,7 @@ export default function Dashboard() {
         },
         {   
             id: 2,
+            slug: 'entertainment',
             name: 'Entertainment',
             amount: 300,
             chosenColor: '#FF5353',
@@ -104,6 +107,7 @@ export default function Dashboard() {
         },
         {
             id: 3,
+            slug: 'hobbies',
             name: 'Hobbies',
             amount: 500,
             chosenColor: '#007CAA',
