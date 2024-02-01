@@ -20,6 +20,7 @@ export default function Dashboard() {
         id: number;
 		name: string;
 		amount: number;
+        transactionDate: string;
 		budgetId?: number;
         budgetName?: string;
         budgetColor?: string;
@@ -40,12 +41,14 @@ export default function Dashboard() {
             name: 'King Soopers',
             amount: 120.65,
             budgetId: 1,
+            transactionDate: '2024-01-21',
         },
         {
             id: 2,
             name: 'Alamo Drafthouse',
             amount: 50.27,
             budgetId: 2,
+            transactionDate: '2024-01-18',
 
         },
         {
@@ -53,6 +56,7 @@ export default function Dashboard() {
             name: 'HBO Max',
             amount: 15.99,
             budgetId: 2,
+            transactionDate: '2024-01-17',
       
 
         },
@@ -61,6 +65,7 @@ export default function Dashboard() {
             name: 'Nuggets Basketball Game',
             amount: 102.01,
             budgetId: 2,
+            transactionDate: '2024-01-15',
 
         },
         {
@@ -68,6 +73,7 @@ export default function Dashboard() {
             name: 'Kodak Film',
             amount: 80.50,
             budgetId: 3,
+            transactionDate: '2024-01-13',
 
         },
         {
@@ -75,6 +81,7 @@ export default function Dashboard() {
             name: 'Mikes Camera',
             amount: 15.99,
             budgetId: 3,
+            transactionDate: '2024-01-11',
 
         },
     ]

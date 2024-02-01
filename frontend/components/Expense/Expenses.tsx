@@ -6,6 +6,7 @@ interface Expense {
   id: number;
   name: string;
   amount: number;
+	transactionDate: string;
   budgetId?: number;
   budgetName?: string;
   budgetColor?: string;
