@@ -1,10 +1,12 @@
 "use client"
 
 import React, { useEffect } from 'react';
+import BudgetCard from '../../../components/Budget/BudgetCard';
 import { useSearchParams } from 'next/navigation';
 import * as Icons from 'react-icons/md'; // Import all icons
 import { json } from 'stream/consumers';
 
+import { Divider } from '@mantine/core';
 
 interface Budget {
   id: number;
@@ -30,8 +32,10 @@ function BudgetDetails() {
   // Ensure budgetData is not undefined before accessing its properties
  
   return (
-    <div>
-      <h1 className='text-black'>{data.name}</h1>
+    <div className='w-full px-8'>
+      <h2 className='mt-4'><span style={{color: data.chosenColor}}>{data.name} </span>Overview</h2>
+				<Divider size='sm' color='#333' />
+        <BudgetCard budgetData={data} expenseData={[]} hideViewDetails={true}/>
     </div>
   );
 

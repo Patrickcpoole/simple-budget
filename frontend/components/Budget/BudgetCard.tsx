@@ -31,6 +31,7 @@ interface Budget {
 interface BudgetCardProps {
   budgetData: Budget;
   expenseData: Expense[];
+  hideViewDetails?: boolean;
 }
 
 
@@ -39,7 +40,7 @@ interface BudgetCardProps {
 
 
 
-function BudgetCard({ budgetData, expenseData }: BudgetCardProps) {
+function BudgetCard({ budgetData, expenseData, hideViewDetails }: BudgetCardProps) {
   const router = useRouter();
   const totalExpenses = expenseData.reduce((acc, expense) => acc + expense.amount, 0);
   const amountRemaining = budgetData.amount - totalExpenses;
@@ -49,7 +50,7 @@ function BudgetCard({ budgetData, expenseData }: BudgetCardProps) {
   // const handleViewDetails = (budgetData: Budget) => () => {
   //   router.push(`/dashboard/${budgetData.slug}?budgetData=${JSON.stringify(budgetData)}`);
   // };
-
+  console.log('budgetData', budgetData)
   return (
     <Card className='w-full md:w-[30%] md:mr-4 mt-4' withBorder padding="lg" radius="lg" style={{borderColor: budgetData.chosenColor, borderWidth:'3px',  boxShadow:' rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;'}} >
       <div className='flex justify-between mb-2'>
@@ -65,7 +66,7 @@ function BudgetCard({ budgetData, expenseData }: BudgetCardProps) {
       pathname: `/dashboard/${budgetData.slug}`,
       query: { budgetData: JSON.stringify(budgetData) }
      }}>
-      <Button variant='outline' color={budgetData.chosenColor} radius='xl' >View Details</Button>
+      {!hideViewDetails && <Button variant='outline' color={budgetData.chosenColor} radius='xl' >View Details</Button>}
     </Link>
     </Card>
   )
