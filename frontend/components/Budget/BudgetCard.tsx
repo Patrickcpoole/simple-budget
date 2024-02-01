@@ -1,3 +1,6 @@
+'use client'
+ 
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 import { Card, Avatar, Text, Progress, Badge, Group, Button, ActionIcon, useMantineTheme} from '@mantine/core';
@@ -37,15 +40,15 @@ interface BudgetCardProps {
 
 
 function BudgetCard({ budgetData, expenseData }: BudgetCardProps) {
-
+  const router = useRouter();
   const totalExpenses = expenseData.reduce((acc, expense) => acc + expense.amount, 0);
   const amountRemaining = budgetData.amount - totalExpenses;
   const progressValue = (totalExpenses / budgetData.amount) * 100;
   const theme = useMantineTheme();
 
-const handleViewDetails = (budgetName: string) => () => {
-
-}
+  // const handleViewDetails = (budgetData: Budget) => () => {
+  //   router.push(`/dashboard/${budgetData.slug}?budgetData=${JSON.stringify(budgetData)}`);
+  // };
 
   return (
     <Card className='w-full md:w-[30%] md:mr-4 mt-4' withBorder padding="lg" radius="lg" style={{borderColor: budgetData.chosenColor, borderWidth:'3px',  boxShadow:' rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;'}} >
@@ -58,9 +61,12 @@ const handleViewDetails = (budgetName: string) => () => {
         <p style={{color: budgetData.chosenColor}}>${totalExpenses} Spent</p>
         <p>${amountRemaining} Remaining</p>
       </div>
-      <Link href={`/dashboard/${budgetData.slug}`}>
-      <Button variant='outline' color={budgetData.chosenColor} radius='xl'>View Details</Button>
-      </Link>
+     <Link href={{
+      pathname: `/dashboard/${budgetData.slug}`,
+      query: { budgetData: JSON.stringify(budgetData) }
+     }}>
+      <Button variant='outline' color={budgetData.chosenColor} radius='xl' >View Details</Button>
+    </Link>
     </Card>
   )
 }
