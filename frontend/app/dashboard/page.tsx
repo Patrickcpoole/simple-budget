@@ -9,6 +9,8 @@ import Budgets from '../../components/Budget/Budgets';
 import Expenses from '../../components/Expense/Expenses';
 import CreateButton from '../../components/CreateButton';
 
+
+
 import * as Icons from 'react-icons/md';
 
 // External UI Imports
@@ -149,6 +151,8 @@ export default function Dashboard() {
 				{/* <CreateExpense /> */}
 			</div>
 			<CreateButton />
+            <CreateBudget />
+            <CreateExpense />
 		</>
 	);
 }

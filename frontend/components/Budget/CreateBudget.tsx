@@ -15,9 +15,7 @@ function CreateBudget() {
   return (
     <>
      <div className='flex justify-center items-center'>
-      {toggledCreateBudget ? <BudgetForm onSubmit={handleSubmit}/>
-      : <button onClick={() => setToggledCreateBudget(true)}>Add a Budget</button>}
-
+       <BudgetForm onSubmit={handleSubmit}/>
       </div>
     </>
   )

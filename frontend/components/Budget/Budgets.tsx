@@ -1,6 +1,7 @@
 import React from 'react';
 import BudgetCard from './BudgetCard';
 
+
 interface Expense {
   id: number;
 	name: string;
@@ -47,8 +48,8 @@ function Budgets( {budgets, expenses}: BudgetsProps) {
     </div>
     }
     
-
   
+    
     </>
   );
 }

@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { useDisclosure } from '@mantine/hooks';
+import { useSelector, useDispatch } from 'react-redux'; 
+import { Modal, Button } from '@mantine/core';
+
+import { openModal } from '../../redux/features/modal-slice';
 
 type FormData = {
 	name: string;
@@ -10,7 +15,21 @@ type FormProps = {
 	onSubmit: (data: FormData) => void;
 };
 
-function CardForm({ onSubmit }: FormProps) {
+type ModalState = {
+	isModalOpen: boolean;
+	modalType: string | null;
+};
+
+function BudgetForm({ onSubmit }: FormProps) {
+	const dispatch = useDispatch(); // Use useDispatch to get the dispatch function
+	// Use useSelector to access the isModalOpen state from Redux
+	const isModalOpen = useSelector(({modalReducer}) => {
+
+		return modalReducer.isModalOpen
+
+	});
+	console.log('is modal open', isModalOpen)
+	const [opened, { open, close }] = useDisclosure(false);
 	const [name, setName] = useState('');
 	const [type, setType] = useState('');
 	const [amount, setAmount] = useState(0);
@@ -28,6 +47,7 @@ function CardForm({ onSubmit }: FormProps) {
 	];
 
 	return (
+		<Modal opened={isModalOpen} onClose={close} title="Authentication">
 		<div className='bg-white  w-full p-4 rounded-md'>
 			<h4 className='mb-6'>Create Budget</h4>
 			<form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
@@ -73,7 +93,8 @@ function CardForm({ onSubmit }: FormProps) {
 				</button>
 			</form>
 		</div>
+		</Modal>
 	);
 }
 
-export default CardForm;
+export default BudgetForm;
