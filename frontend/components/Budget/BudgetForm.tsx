@@ -3,7 +3,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { useSelector, useDispatch } from 'react-redux'; 
 import { Modal, Button } from '@mantine/core';
 
-import { openModal } from '../../redux/features/modal-slice';
+import { openModal, closeModal } from '../../redux/features/modal-slice';
 
 type FormData = {
 	name: string;
@@ -33,6 +33,7 @@ function BudgetForm({ onSubmit }: FormProps) {
 	const [name, setName] = useState('');
 	const [type, setType] = useState('');
 	const [amount, setAmount] = useState(0);
+	const [chosenColor, setChosenColor] = useState('')
 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault();
@@ -40,19 +41,19 @@ function BudgetForm({ onSubmit }: FormProps) {
 		onSubmit({ name, type, amount });
 	};
 
-	const frequencyInputs = [
-		{ value: 'Every Month', label: 'Every Month' },
-		{ value: 'Every Few Months', label: 'Every Few Months' },
-		{ value: 'Once', label: 'Once' },
-	];
+	const colorChoices = [
+		'#FF5353', '#007CAA', '#0C6900', '#E6C616', '#EF8442', 
+		'#AC55F7', '#4DF4AD', '#801A1A', '#3754F0', '#794600',
+		'#B0FF33', '#E577CB'
+	]
 
 	return (
-		<Modal opened={isModalOpen} onClose={close} title="Authentication">
-		<div className='bg-white  w-full p-4 rounded-md'>
-			<h4 className='mb-6'>Create Budget</h4>
+		<Modal opened={isModalOpen} onClose={close} title='Create Budget' >
+	
+	
 			<form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
 				<label className='flex flex-col font-semibold'>
-					Title:
+					Budget Name:
 					<input
 						type='text'
 						value={name}
@@ -60,28 +61,35 @@ function BudgetForm({ onSubmit }: FormProps) {
 						className='border mt-2 border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary '
 					/>
 				</label>
-				<label className='flex flex-col font-semibold '>
-					Budget Frequency:
-					<div onChange={(e) => setType((e.target as HTMLInputElement).value)} className='flex mt-2'>
-						{frequencyInputs.map((input, index) => (
-							<div key={index }  className='mr-4'>
-								<input type='radio' value={input.value} name='frequency' className='mr-2'/>
-								{input.label}
-							</div>
-						))}
-					</div>
+			
+				<label className='flex flex-col font-semibold'>
+					Budget Amount:
+					<input
+						type='text'
+						value={amount}
+						onChange={(e) => setAmount(parseInt(e.target.value))}
+						className='border mt-2 border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary '
+					/>
 				</label>
 				<label className='flex flex-col font-semibold'>
-					What is the budget amount?
-	
+					Search for Budget Icon:
 					<input
-						type='number'
-						value={amount}
-						onChange={(e) => setAmount(Number(e.target.value))}
-						className='border border-gray-300  mt-2 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary '
+						type='text'
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+						className='border mt-2 border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary '
 					/>
-			
 				</label>
+				<label className='flex flex-col font-semibold'>
+					Choose a Budget Color:
+					<div className='grid grid-cols-6 w-full gap-4 px-4 pt-4'>
+						{colorChoices.map((color, index) => (
+							<div key={index} style={{ backgroundColor: color }} className='h-6 w-6 rounded-full cursor-pointer' onClick={() => setChosenColor(color)}></div>
+						))}
+					</div>
+					</label>
+
+				<div className='flex justify-between'>
 				<button
 					type='submit'
 					value='Submit'
@@ -89,10 +97,19 @@ function BudgetForm({ onSubmit }: FormProps) {
 				 text-sm lg:text-md lg:text-md hover:bg-custom-gradient text-white
 				  font-bold py-2 px-4 rounded'
 				>
-					Create Budget
+					Create
 				</button>
+				<button
+					onClick={() => closeModal}
+					className='bg-danger h-12 lg:w-[30%] md:w-[20%] w-[90%]  ml-[1%]
+				 text-sm lg:text-md lg:text-md hover:bg-custom-gradient text-white
+				  font-bold py-2 px-4 rounded'
+				>
+					Cancel
+				</button>
+				</div>
 			</form>
-		</div>
+
 		</Modal>
 	);
 }
