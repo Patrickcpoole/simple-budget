@@ -3,11 +3,13 @@ import authReducer from "./features/auth/auth-slice";
 import navReducer from "./features/nav-slice";
 import modalReducer from './features/modal-slice'; // Your new modal slice
 import userReducer from "./features/user/user-slice";
+import budgetsReducer from "./features/budgets/budgets-slice"
 import {TypedUseSelectorHook} from "react-redux";
 import {useSelector} from "react-redux";
 export const store = configureStore({
   reducer: {
     authReducer,
+    budgetsReducer, 
     userReducer,
     navReducer,
     modalReducer

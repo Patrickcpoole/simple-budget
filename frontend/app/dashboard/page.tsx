@@ -9,6 +9,8 @@ import Budgets from '../../components/Budget/Budgets';
 import Expenses from '../../components/Expense/Expenses';
 import CreateButton from '../../components/CreateButton';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../redux/store'; 
 
 
 import * as Icons from 'react-icons/md';
@@ -87,36 +89,41 @@ export default function Dashboard() {
             transactionDate: '2024-01-11',
 
         },
-    ]
-
-	const budgets: Budget[] = [
-        {
-            id: 1,
-            slug: 'groceries',
-            name: 'Groceries',
-            amount: 800,
-            chosenColor: '#0C6900',
-            chosenIcon: 'MdShoppingCart',
-        },
-        {   
-            id: 2,
-            slug: 'entertainment',
-            name: 'Entertainment',
-            amount: 300,
-            chosenColor: '#FF5353',
-            chosenIcon: 'MdLocalMovies'
-           
-        },
-        {
-            id: 3,
-            slug: 'hobbies',
-            name: 'Hobbies',
-            amount: 500,
-            chosenColor: '#007CAA',
-            chosenIcon: 'MdCameraAlt'
-        
-        }
     ];
+
+  
+
+    const budgets = useSelector((state: RootState) => state.budgetsReducer.value);
+
+
+	// const budgets: Budget[] = [
+    //     {
+    //         id: 1,
+    //         slug: 'groceries',
+    //         name: 'Groceries',
+    //         amount: 800,
+    //         chosenColor: '#0C6900',
+    //         chosenIcon: 'MdShoppingCart',
+    //     },
+    //     {   
+    //         id: 2,
+    //         slug: 'entertainment',
+    //         name: 'Entertainment',
+    //         amount: 300,
+    //         chosenColor: '#FF5353',
+    //         chosenIcon: 'MdLocalMovies'
+           
+    //     },
+    //     {
+    //         id: 3,
+    //         slug: 'hobbies',
+    //         name: 'Hobbies',
+    //         amount: 500,
+    //         chosenColor: '#007CAA',
+    //         chosenIcon: 'MdCameraAlt'
+        
+    //     }
+    // ];
 
   
 	function addBudgetDetailsToExpense(expense:Expense) {

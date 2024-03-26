@@ -1,15 +1,21 @@
-import React, {useState} from 'react'
-import BudgetForm from './BudgetForm'
+import React, {useState} from 'react';
+import BudgetForm from './BudgetForm';
+import { useDispatch } from 'react-redux'; 
+import type { AppDispatch } from '../../redux/store';
+import { addBudget } from '../../redux/features/budgets/budgets-slice';
+import * as Icons from 'react-icons/md';
+
+
 
 function CreateBudget() {
-  const [budgetAmount, setBudgetAmount] = useState(500)
-  const [budgetType, setBudgetType] = useState('Monthly');
-  const [budgetName, setBudgetName] = useState('Groceries');
-  const [toggledCreateBudget, setToggledCreateBudget] = useState(false);
-  const handleSubmit = (data: { name: string; type: string; amount: number }) => {
-    setBudgetName(data.name);
-    setBudgetType(data.type);
-    setBudgetAmount(data.amount);
+  const dispatch = useDispatch<AppDispatch>();
+  const handleSubmit = (data: { name: string; chosenColor: string; chosenIcon: keyof typeof Icons | undefined; amount:number }) => {
+    const newBudget = {
+      ...data,
+      slug: 'test-budget',
+      id: 4
+    }
+    dispatch(addBudget(newBudget))
   };
 
   return (

@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
-import { useSelector, useDispatch } from 'react-redux'; 
 import { Modal, Button } from '@mantine/core';
+import * as Icons from 'react-icons/md';
 
-// 3/11/24
 import { openModal, closeModal } from '../../redux/features/modal-slice';
+import { useSelector, useDispatch } from 'react-redux'; 
 
 type FormData = {
 	name: string;
-	type: string;
+	chosenColor: string;
 	amount: number;
+	chosenIcon: keyof typeof Icons | undefined; // Ensure this matches iconName in Expense
+
 };
 
 type FormProps = {
@@ -21,6 +23,12 @@ type ModalState = {
 	modalType: string | null;
 };
 
+const colorChoices = [
+	'#FF5353', '#007CAA', '#0C6900', '#E6C616', '#EF8442', 
+	'#AC55F7', '#4DF4AD', '#801A1A', '#3754F0', '#794600',
+	'#B0FF33', '#E577CB'
+]
+
 function BudgetForm({ onSubmit }: FormProps) {
 	const dispatch = useDispatch(); // Use useDispatch to get the dispatch function
 	// Use useSelector to access the isModalOpen state from Redux
@@ -31,25 +39,29 @@ function BudgetForm({ onSubmit }: FormProps) {
 	});
 	console.log('is modal open', isModalOpen)
 	const [opened, { open, close }] = useDisclosure(false);
-	const [name, setName] = useState('');
-	const [type, setType] = useState('');
-	const [amount, setAmount] = useState(0);
-	const [chosenColor, setChosenColor] = useState('')
+	const [name, setName] = useState<string>('');
+	const [type, setType] = useState<string>('');
+	const [amount, setAmount] = useState<number>(0);
+	const [chosenColor, setChosenColor] = useState<string>('');
+	const [chosenIcon, setChosenIcon] = useState<keyof typeof Icons | undefined>('MdLocalMovies');
 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault();
-
-		onSubmit({ name, type, amount });
+		
+		onSubmit({ name, chosenColor, chosenIcon, amount });
 	};
 
-	const colorChoices = [
-		'#FF5353', '#007CAA', '#0C6900', '#E6C616', '#EF8442', 
-		'#AC55F7', '#4DF4AD', '#801A1A', '#3754F0', '#794600',
-		'#B0FF33', '#E577CB'
-	]
+	const handleCloseModal = () => {
+		if (isModalOpen) {
+			dispatch(closeModal());
+			close();
+		}
+	}
+
+	
 
 	return (
-		<Modal opened={isModalOpen} onClose={close} title='Create Budget' >
+		<Modal opened={isModalOpen} onClose={handleCloseModal} title='Create Budget' >
 	
 	
 			<form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
@@ -66,7 +78,7 @@ function BudgetForm({ onSubmit }: FormProps) {
 				<label className='flex flex-col font-semibold'>
 					Budget Amount:
 					<input
-						type='text'
+						type='number'
 						value={amount}
 						onChange={(e) => setAmount(parseInt(e.target.value))}
 						className='border mt-2 border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary '
